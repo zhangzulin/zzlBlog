@@ -1,0 +1,33 @@
+module.exports = {
+    userFormateError:{
+        code:'10001',
+        message:'用户名或密码为空',
+        resulit:''
+    },
+    userAlreadyExited:{
+        code:'10002',
+        message:'用户名已存在',
+        resulit:''
+    },
+    userRegisterError:{
+        code:'10003',
+        message:'用户名注册错误',
+        resulit:''
+    },
+    userDoesNotExist:{
+        code:'10004',
+        message:'用户未注册',
+        resulit:''
+    },
+    userLoginError:{
+        code:'10005',
+        message:'用户登录失败',
+        resulit:''
+    },
+    invalidPassword:{
+        code:'10006',
+        message:'密码错误',
+        resulit:''
+    },
+
+}
