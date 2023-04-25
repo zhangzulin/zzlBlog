@@ -6,7 +6,7 @@ module.exports = {
     },
     userAlreadyExited:{
         code:'10002',
-        message:'用户名已存在',
+        message:'用户名已注册',
         resulit:''
     },
     userRegisterError:{
@@ -29,5 +29,36 @@ module.exports = {
         message:'密码错误',
         resulit:''
     },
+    TokenExpiredError:{
+        code:'10007',
+        message:'token过期',
+        resulit:''
+    },
+    JsonWebTokenError:{
+        code:'10008',
+        message:'无效token',
+        resulit:''
+    },
+    TokenError:{
+        code:'10009',
+        message:'token异常',
+        resulit:''
+    },
 
+    // sort
+    sortAddError:{
+        code:'10101',
+        message:'sort添加失败',
+        resulit:''
+    },
+    sortNoAlreadyExited:{
+        code:'10102',
+        message:'请输入正确的id',
+        resulit:''
+    },
+    sortFormateError:{
+        code:'10103',
+        message:'类目名为空',
+        resulit:''
+    },
 }

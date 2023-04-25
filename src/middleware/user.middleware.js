@@ -6,10 +6,11 @@ const {
     userFormateError,
     userAlreadyExited,
     userDoesNotExist,
-    userLoginError
+    userLoginError,
+    invalidPassword
 } = require('../constant/error.type')
 const { emit } = require('../app')
-const userValidator = async (ctx, next) => {
+const userValidator = async (ctx, next) => {//输入的为空判断
     const {
         user_name,
         password
@@ -24,7 +25,7 @@ const userValidator = async (ctx, next) => {
     }
     await next()
 }
-const verifyUser = async (ctx, next) => {
+const verifyUser = async (ctx, next) => {//数据库为空判断
     const {
         user_name,
         password
@@ -33,8 +34,8 @@ const verifyUser = async (ctx, next) => {
         const res = await getUserInfo({
             user_name
         })
-        if (!res) {
-            console.error('用户名未注册', user_name)
+        if (res) {
+            console.error('用户名已注册', user_name)
             ctx.app.emit('error', userAlreadyExited, ctx)
             return
         }
@@ -44,7 +45,7 @@ const verifyUser = async (ctx, next) => {
     }
     await next()
 }
-const ctryptPassword = async(ctx, next) => {
+const ctryptPassword = async(ctx, next) => {//密码加密
     const {
         password
     } = ctx.request.body
@@ -54,23 +55,26 @@ const ctryptPassword = async(ctx, next) => {
     ctx.request.body.password = hash
     await next()
 }
-const verifyLogin = async(ctx, next) => {
+const verifyLogin = async(ctx, next) => { //登录密码是否正确判断
     const {
         user_name,password
     } = ctx.request.body
     console.log(password)
-    // 1.账号
     try {
+        // 1.账号
         const res = await getUserInfo({user_name})
         if(!res){
             console.error('用户未注册',{user_name})
             return ctx.app.emit('error', userDoesNotExist, ctx)
         }
+        // 2.匹配密码
+        if(!bcrypt.compareSync(password,res.password)){//密码错误
+            return ctx.app.emit('error',invalidPassword,ctx)
+        }
     } catch (error) {
         console.error(err)
         return ctx.app.emit('error', userLoginError, ctx)
     }
-    // 2.匹配密码
     
     await next()
 }
