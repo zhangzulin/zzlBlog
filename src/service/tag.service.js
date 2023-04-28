@@ -1,12 +1,12 @@
 const Tag = require('../model/tag.model')
 class TagService {
-    async createdTag(name) {
+    async createdTag({name,color}) {
         //插入数据库
         // User.create({
         //     user_name:user_name,
         //     password:password,
         // })
-        const res = await Tag.create({name})
+        const res = await Tag.create({name,color})
         return res.dataValues;
     }
     async getTagDetail({id}){

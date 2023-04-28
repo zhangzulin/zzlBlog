@@ -63,7 +63,7 @@ module.exports = {
     },
 
      // category
-    categoryAddError:{
+     categoryAddError:{
         code:'10201',
         message:'category添加失败',
         resulit:''
@@ -78,4 +78,20 @@ module.exports = {
         message:'目录名为空',
         resulit:''
     },
+    // tag
+   categoryAddError:{
+       code:'10301',
+       message:'tag添加失败',
+       resulit:''
+   },
+   categoryNoAlreadyExited:{
+       code:'10302',
+       message:'请输入正确的id',
+       resulit:''
+   },
+   categoryFormateError:{
+       code:'10303',
+       message:'标签名为空',
+       resulit:''
+   },
 }
