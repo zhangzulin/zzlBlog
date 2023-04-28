@@ -94,4 +94,20 @@ module.exports = {
        message:'标签名为空',
        resulit:''
    },
+   // article
+  articleAddError:{
+      code:'10301',
+      message:'article添加失败',
+      resulit:''
+  },
+  articleNoAlreadyExited:{
+      code:'10302',
+      message:'请输入正确的id',
+      resulit:''
+  },
+  articleFormateError:{
+      code:'10303',
+      message:'参数为空',
+      resulit:''
+  },
 }

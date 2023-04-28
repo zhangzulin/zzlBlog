@@ -1,36 +1,36 @@
-const Category = require('../model/category.model')
-class CategoryService {
-    async createdCategory(name) {
+const Article = require('../model/article.model')
+class ArticleService {
+    async createdArticle({title,categories,tagIds,content}) {
         //插入数据库
         // User.create({
-        //     user_name:user_name,
+        //     user_title:user_title,
         //     password:password,
         // })
-        const res = await Category.create({name})
+        const res = await Article.create({title,categories,tagIds,content})
         return res.dataValues;
     }
-    async getCategoryDetail({id}){
+    async getArticleDetail({id}){
      var whereObj = {}
         id&Object.assign(whereObj,{id})
-        const res = await Category.findOne({
+        const res = await Article.findOne({
             where:{id:id}
         })
         return res ? res.dataValues : null
     }
-    async getCategoryName({name}){
+    async getArticleTitle({title}){
      var whereObj = {}
-     name&Object.assign(whereObj,{name})
-        const res = await Category.findOne({
-            where:{name:name}
+     title&Object.assign(whereObj,{title})
+        const res = await Article.findOne({
+            where:{title:title}
         })
         return res ? res.dataValues : null
     }
-    async getCategoryList(pageNo, pageSize, name){
+    async getArticleList(pageNo, pageSize, title){
         // 1. 解析pageNo和pageSize
         const offset = (pageNo - 1) * pageSize
         var whereObj = {}
-        whereObj = name?{name:name}:{}
-        const { count, rows } = await Category.findAndCountAll({
+        whereObj = title?{title:title}:{}
+        const { count, rows } = await Article.findAndCountAll({
             where: whereObj,
             offset: offset,
             limit: pageSize * 1,
@@ -42,31 +42,31 @@ class CategoryService {
             rows: rows,
         }
     }
-    async updateUserInfo(id,user_name){
+    async updateUserInfo(id,user_title){
         const whereOpt = { id }
         const newUser = {}
 
-        user_name && Object.assign(newUser, { user_name })
+        user_title && Object.assign(newUser, { user_title })
         const res = await User.update(newUser, { where: whereOpt })
         return res[0] > 0 ? true : false
     }
-    async delCategory({id}){
-        const res = await Category.destroy({
+    async delArticle({id}){
+        const res = await Article.destroy({
             where: {
                 id: id
             }
         })
         return res > 0 ? true : false
     }
-    async editCategory({ id, name }){
+    async editArticle({ id, title }){
         const whereOpt = {id}
-        const newCategory = {}
-        id&Object.assign(newCategory,{id})
-        name&Object.assign(newCategory,{name})
-        const res = await Category.update(newCategory, {
+        const newArticle = {}
+        id&Object.assign(newArticle,{id})
+        title&Object.assign(newArticle,{title})
+        const res = await Article.update(newArticle, {
             where: whereOpt
         })
         return res > 0 ? true : false
     }
 }
-module.exports = new CategoryService()
+module.exports = new ArticleService()
