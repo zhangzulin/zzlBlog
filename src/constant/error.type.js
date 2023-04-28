@@ -61,4 +61,21 @@ module.exports = {
         message:'类目名为空',
         resulit:''
     },
+
+     // category
+    categoryAddError:{
+        code:'10201',
+        message:'category添加失败',
+        resulit:''
+    },
+    categoryNoAlreadyExited:{
+        code:'10202',
+        message:'请输入正确的id',
+        resulit:''
+    },
+    categoryFormateError:{
+        code:'10203',
+        message:'目录名为空',
+        resulit:''
+    },
 }
